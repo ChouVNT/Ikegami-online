@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hàng Nhật Chính Hãng</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f6f6f6;
+    }
+    header {
+      background: linear-gradient(to right, #ffea00, #00bcd4);
+      color: #000;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .lang-select {
+      font-size: 16px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      font-size: 14px;
+    }
+    .price {
+      color: #e91e63;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .order-button {
+      background-color: #00bcd4;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hàng Nhật Chính Hãng</h1>
+    <div class="lang-select">
+      <select onchange="changeLanguage(this.value)">
+        <option value="vi">Tiếng Việt</option>
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="products" id="product-list">
+    <!-- Sản phẩm sẽ được render ở đây bằng JavaScript -->
+  </main>
+
+  <script>
+    const products = [
+      {
+        name: {
+          vi: "Viên uống giảm cân Nano Enzyme Kaicho Koso",
+          ja: "ナノ酵素ダイエットサプリ",
+          en: "Nano Enzyme Diet Capsule"
+        },
+        price: "¥16,500",
+        image: "https://via.placeholder.com/300x200?text=Product+1",
+        desc: {
+          vi: "Hỗ trợ giảm cân, detox cơ thể.",
+          ja: "ダイエットとデトックスをサポートします。",
+          en: "Supports weight loss and body detox."
+        }
+      },
+      {
+        name: {
+          vi: "Viên uống DHA-EPA Hisano",
+          ja: "DHA・EPAサプリメント",
+          en: "DHA-EPA Supplement"
+        },
+        price: "¥17,000",
+        image: "https://via.placeholder.com/300x200?text=Product+2",
+        desc: {
+          vi: "Tốt cho mắt và trí não.",
+          ja: "目と脳に良い。",
+          en: "Good for eyes and brain."
+        }
+      }
+      // Chủ nhân có thể thêm nhiều sản phẩm ở đây
+    ];
+
+    let currentLang = 'vi';
+
+    function renderProducts() {
+      const container = document.getElementById('product-list');
+      container.innerHTML = '';
+      products.forEach(p => {
+        container.innerHTML += `
+          <div class="product">
+            <img src="${p.image}" alt="${p.name[currentLang]}">
+            <h3>${p.name[currentLang]}</h3>
+            <p>${p.desc[currentLang]}</p>
+            <div class="price">${p.price}</div>
+            <a class="order-button" href="#">Liên hệ đặt hàng</a>
+          </div>
+        `;
+      });
+    }
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      renderProducts();
+    }
+
+    renderProducts();
+  </script>
+</body>
+</html>
